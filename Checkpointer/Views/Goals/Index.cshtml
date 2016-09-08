@@ -1,0 +1,14 @@
+﻿@model Checkpointer.Models.GoalChildrenList
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h3 class="pageAligned">@Html.ActionLink("Add New Goal", "Create", new { id = 0 })</h3>
+
+@if (Model.goalChildren.Any())
+{
+    <ul class='root_checkpoints'>
+        @Html.Partial("_GoalPartial", Model)
+    </ul>
+}

@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Checkpointer</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body>
+    <header>
+        <h1 id="heading">@Html.ActionLink("Checkpointer", "Index", "Goals", new { area = "" })</h1>
+
+        <div class="headerButton">
+            @Html.ActionLink("New Goal", "Create", new { id = 0 })
+        </div>
+    </header>
+    <page>
+        @RenderBody()
+    </page>
+        <footer>
+            <div class="footerLink">
+                <a href="~/Project_Readme.html">Unhelpful Checkpointer Readme</a>
+            </div>
+            <div id="copyright">
+                &copy; @DateTime.Now.Year - Robbie Antenesse
+            </div>
+        </footer>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

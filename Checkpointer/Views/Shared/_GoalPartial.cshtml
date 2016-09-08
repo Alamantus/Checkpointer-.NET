@@ -1,0 +1,39 @@
+﻿@model Checkpointer.Models.GoalChildrenList
+
+@if (Model.goalChildren.Where(goal => goal.parent == Model.parent).Any())
+{
+    foreach (var goal in Model.goalChildren)
+    {
+        if (goal.parent == Model.parent)
+        {
+            Checkpointer.Models.GoalChildrenList children = new Checkpointer.Models.GoalChildrenList { parent = goal.id, goalChildren = Model.goalChildren };
+            string type = (goal.parent == 0) ? "goal" : "checkpoint";
+
+            <li class='@type'>
+                <div class='@{@type}_title'>
+                    <strong class="title" title="ID = @goal.id">@Html.DisplayFor(modelgoal => goal.name)</strong>
+                </div>
+                <div class="@{@type}_details">
+                    <div class="@{@type}_details_text">
+                        @Html.DisplayFor(modelgoal => goal.description)
+                    </div>
+                </div>
+                <div class="addCheckpointArea">
+                    <small>
+                        <em>
+                            @Html.ActionLink("Add Checkpoint", "Create", new { id = goal.id }) |
+                            @Html.ActionLink("Edit", "Edit", new { id = goal.id }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = goal.id })
+                        </em>
+                    </small>
+                </div>
+                <div class="children">
+                    <ul class="childrenList">
+                        @Html.Partial("_GoalPartial", children)
+                    </ul>
+                </div>
+            </li>
+
+        }
+    }
+}
